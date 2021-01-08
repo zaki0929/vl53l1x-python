@@ -191,6 +191,10 @@ class VL53L1X:
         """Get distance from VL53L1X ToF Sensor"""
         return _TOF_LIBRARY.getDistance(self._dev)
 
+    def get_range_status(self):
+        """Get range status from VL53L1X ToF Sensor"""
+        return _TOF_LIBRARY.getRangeStatus(self._dev)
+
     def set_timing(self, timing_budget, inter_measurement_period):
         """Set the timing budget and inter measurement period.
 
