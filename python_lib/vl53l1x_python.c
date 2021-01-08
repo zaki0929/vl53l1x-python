@@ -201,6 +201,21 @@ int32_t getDistance(VL53L1_Dev_t *dev)
 }
 
 /******************************************************************************
+ * @brief   Get current range status
+ * @return  Current range status or -1 on error
+ *****************************************************************************/
+int32_t getRangeStatus(VL53L1_Dev_t *dev)
+{
+    VL53L1_Error Status = VL53L1_ERROR_NONE;
+    int32_t current_range_status = -1;
+    Status = VL53L1_WaitMeasurementDataReady(dev);
+    Status = VL53L1_GetRangingMeasurementData(dev, pRangingMeasurementData);
+    current_range_status = pRangingMeasurementData->RangeStatus;
+    VL53L1_ClearInterruptAndStartMeasurement(dev);
+    return current_range_status;
+}
+
+/******************************************************************************
  * @brief   Stop Ranging
  *****************************************************************************/
 void stopRanging(VL53L1_Dev_t *dev)
